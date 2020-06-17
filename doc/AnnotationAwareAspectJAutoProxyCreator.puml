@@ -22,6 +22,6 @@ partition DefaultAopProxyFactory {
     Endif
     --> getProxy()
 }
-
+-->将proxy替换被代理类
 -->(*)
 @enduml
