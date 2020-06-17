@@ -6,6 +6,6 @@
 
 3. BeanPostProcessor 介绍:doc/BeanPostProcessor.md
 
-4. aop AspectJ创建类AnnotationAwareAspectJAutoProxyCreator的流程图:doc/AnnotationAwareAspectJAutoProxyCreator.puml
+4. aop AspectJ实现类AnnotationAwareAspectJAutoProxyCreator的流程图:doc/AnnotationAwareAspectJAutoProxyCreator.puml
 
 5. AdvisedSupport 的实例说明:doc/AdvisedSupport.md
