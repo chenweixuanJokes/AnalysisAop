@@ -1,0 +1,27 @@
+@startuml
+
+rectangle BeanDefinition
+
+rectangle ChildBeanDefinition
+
+BeanDefinition <|-- ChildBeanDefinition
+
+rectangle RootBeanDefinition
+
+BeanDefinition <|-- RootBeanDefinition
+
+rectangle GenericBeanDefinition
+
+BeanDefinition <|-- GenericBeanDefinition
+
+rectangle bean
+
+ChildBeanDefinition --> bean :实例化
+
+RootBeanDefinition --> bean :实例化
+
+GenericBeanDefinition --> bean :实例化
+
+
+
+@enduml

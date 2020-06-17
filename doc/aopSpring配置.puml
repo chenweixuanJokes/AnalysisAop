@@ -1,0 +1,77 @@
+@startuml
+
+rectangle SpringBootApplication
+
+rectangle EnableAutoConfiguration
+
+SpringBootApplication --> EnableAutoConfiguration
+
+rectangle AutoConfigurationImportSelector
+
+EnableAutoConfiguration --> AutoConfigurationImportSelector
+
+rectangle AopAutoConfiguration
+
+AutoConfigurationImportSelector --> AopAutoConfiguration :spring.factories
+
+rectangle AspectJAutoProxyingConfiguration
+
+AopAutoConfiguration --> AspectJAutoProxyingConfiguration :aspectJ
+
+rectangle JdkDynamicAutoProxyConfiguration
+
+AspectJAutoProxyingConfiguration --> JdkDynamicAutoProxyConfiguration
+
+rectangle CglibAutoProxyConfiguration
+
+AspectJAutoProxyingConfiguration --> CglibAutoProxyConfiguration
+
+rectangle EnableAspectJAutoProxy
+
+JdkDynamicAutoProxyConfiguration --> EnableAspectJAutoProxy:false
+
+CglibAutoProxyConfiguration --> EnableAspectJAutoProxy:true
+
+rectangle AspectJAutoProxyRegistrar
+
+EnableAspectJAutoProxy --> AspectJAutoProxyRegistrar
+
+rectangle ImportBeanDefinitionRegistrar
+
+note left of ImportBeanDefinitionRegistrar
+使用@Import注解导入,如果该类实现了
+
+ImportBeanDefinitionRegistrar接
+
+口，则会调用该接口方法，而不是注册
+
+为bean,不过可以通过该接口方法
+
+registerBeanDefinitions动态
+
+注册bean
+end note
+
+ImportBeanDefinitionRegistrar <|- AspectJAutoProxyRegistrar
+
+rectangle AnnotationAwareAspectJAutoProxyCreator
+
+AspectJAutoProxyRegistrar --> AnnotationAwareAspectJAutoProxyCreator:注入
+
+rectangle BeanPostProcessor
+
+BeanPostProcessor <|- AnnotationAwareAspectJAutoProxyCreator
+
+rectangle bean加载
+
+AnnotationAwareAspectJAutoProxyCreator --> bean加载:监听
+
+rectangle ClassProxyingConfiguration
+
+AopAutoConfiguration --> ClassProxyingConfiguration :classProxy
+
+
+
+
+
+@enduml

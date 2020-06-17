@@ -1,0 +1,27 @@
+@startuml
+(*)  --> BeanPostProcessor
+partition AnnotationAwareAspectJAutoProxyCreator {
+    --> [回调] postProcessAfterInitialization()
+    -->  wrapIfNecessary()
+    --> [如果bean需要代理] createProxy()
+    --> buildAdvisors()
+    --> proxyFactory 设置属性
+    --> proxyFactory.getProxy()
+}
+partition ProxyFactory {
+    --> createAopProxy().getProxy()
+    --> getAopProxyFactory().createAopProxy()
+}
+partition DefaultAopProxyFactory {
+    --> createAopProxy()
+    If isProxyTargetClass/isInterface then
+    --> [true] JdkDynamicAopProxy(AdvisedSupport)
+    --> getProxy()
+    else
+    --> [false] ObjenesisCglibAopProxy(AdvisedSupport)
+    Endif
+    --> getProxy()
+}
+
+-->(*)
+@enduml

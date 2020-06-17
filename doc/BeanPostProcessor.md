@@ -1,0 +1,11 @@
+## BeanPostProcessor
+
+BeanPostProcessor也称为Bean后置处理器，它是Spring中定义的接口，在Spring容器的创建过程中（具体为每个Bean初始化前后）会回调BeanPostProcessor中定义的两个方法
+
+* postProcessBeforeInitialization方法
+
+会在每个bean对象的初始化方法调用之前回调
+
+* postProcessAfterInitialization方法
+
+会在每个bean对象的初始化方法调用之后被回调
